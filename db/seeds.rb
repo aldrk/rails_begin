@@ -7,22 +7,31 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-Category.create([{ title: 'Backend' }, { title: 'Frontend' }, { title: 'DevOps' }])
-User.create([{ login: 'Alex', password: '1234' }, { login: 'Masha', password: '4321' }])
-Test.create([{ title: 'Rails test', level: 2, category_id: 1, author_id: 1 },
-             { title: 'React test', level: 1, category_id: 2, author_id: 2 },
-             { title: 'Vue test', level: 0, category_id: 2, author_id: 1 }])
-Question.create([{ title: 'Is React frontend framework?', test_id: 2 },
-                 { title: 'What campaign did create React?', test_id: 2 },
-                 { title: 'Is Rails backend framework?', test_id: 1 },
-                 { title: 'Is Vue backend framework?', test_id: 3 }])
-Answer.create([{ title: 'yes', correct: true, question_id: 1 },
-               { title: 'no', correct: false, question_id: 1 },
-               { title: 'yes', correct: true, question_id: 3 },
-               { title: 'no', correct: false, question_id: 3 },
-               { title: 'Facebook', correct: true, question_id: 2 },
-               { title: 'Google', correct: false, question_id: 2 },
-               { title: 'Netflix', correct: false, question_id: 2 },
-               { title: 'Yandex', correct: false, question_id: 2 },
-               { title: 'yes', correct: false, question_id: 4 },
-               { title: 'no', correct: true, question_id: 4 }])
+Category.create!({ title: 'DevOps' })
+backend_category = Category.create!({ title: 'Backend' })
+frontend_category = Category.create!({ title: 'Frontend' })
+
+alex_user = User.create!({ login: 'Alex', password: '1234' })
+masha_user = User.create!({ login: 'Masha', password: '4321' })
+
+react_test = Test.create!({ title: 'Rails test', level: 2, category_id: backend_category.id, author_id: alex_user.id })
+rails_test = Test.create!({ title: 'React test', level: 1, category_id: frontend_category.id, author_id: masha_user.id })
+vue_test = Test.create!({ title: 'Vue test', level: 0, category_id: frontend_category.id, author_id: alex_user.id })
+
+react_q1 = Question.create!({ title: 'Is React frontend framework?', test_id: react_test.id })
+react_q2 = Question.create!({ title: 'What campaign did create React?', test_id: react_test.id })
+rails_q1 = Question.create!({ title: 'Is Rails backend framework?', test_id: rails_test.id })
+vue_q1 = Question.create!({ title: 'Is Vue backend framework?', test_id: vue_test.id })
+
+Answer.create!([{ title: 'yes', correct: true, question_id: react_q1.id },
+                { title: 'no', correct: false, question_id: react_q1.id },
+                { title: 'yes', correct: true, question_id: rails_q1.id },
+                { title: 'no', correct: false, question_id: rails_q1.id },
+                { title: 'Facebook', correct: true, question_id: react_q2.id },
+                { title: 'Google', correct: false, question_id: react_q2.id },
+                { title: 'Netflix', correct: false, question_id: react_q2.id },
+                { title: 'Yandex', correct: false, question_id: react_q2.id },
+                { title: 'yes', correct: false, question_id: vue_q1.id },
+                { title: 'no', correct: true, question_id: vue_q1.id }])
+
+Result.create!([{ user_id: alex_user.id, test_id: react_test.id }, { user_id: alex_user.id, test_id: rails_test.id }])
