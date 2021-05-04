@@ -7,31 +7,28 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-Category.create!({ title: 'DevOps' })
-backend_category = Category.create!({ title: 'Backend' })
-frontend_category = Category.create!({ title: 'Frontend' })
+categories = Category.create!([{ title: 'DevOps' }, { title: 'Backend' }, { title: 'Frontend' }])
 
-alex_user = User.create!({ login: 'Alex', password: '1234' })
-masha_user = User.create!({ login: 'Masha', password: '4321' })
+users = User.create!([{ login: 'Alex', password: '1234' }, { login: 'Masha', password: '4321' }])
 
-react_test = Test.create!({ title: 'Rails test', level: 2, category_id: backend_category.id, author_id: alex_user.id })
-rails_test = Test.create!({ title: 'React test', level: 1, category_id: frontend_category.id, author_id: masha_user.id })
-vue_test = Test.create!({ title: 'Vue test', level: 0, category_id: frontend_category.id, author_id: alex_user.id })
+react_test = Test.create!({ title: 'Rails test', level: 2, category: categories[1], author: users[0] })
+rails_test = Test.create!({ title: 'React test', level: 1, category: categories[2], author: users[1] })
+vue_test = Test.create!({ title: 'Vue test', level: 0, category: categories[2], author: users[0] })
 
-react_q1 = Question.create!({ title: 'Is React frontend framework?', test_id: react_test.id })
-react_q2 = Question.create!({ title: 'What campaign did create React?', test_id: react_test.id })
-rails_q1 = Question.create!({ title: 'Is Rails backend framework?', test_id: rails_test.id })
-vue_q1 = Question.create!({ title: 'Is Vue backend framework?', test_id: vue_test.id })
+react_q1 = Question.create!({ title: 'Is React frontend framework?', test: react_test })
+react_q2 = Question.create!({ title: 'What campaign did create React?', test: react_test })
+rails_q1 = Question.create!({ title: 'Is Rails backend framework?', test: rails_test })
+vue_q1 = Question.create!({ title: 'Is Vue backend framework?', test: vue_test })
 
-Answer.create!([{ title: 'yes', correct: true, question_id: react_q1.id },
-                { title: 'no', correct: false, question_id: react_q1.id },
-                { title: 'yes', correct: true, question_id: rails_q1.id },
-                { title: 'no', correct: false, question_id: rails_q1.id },
-                { title: 'Facebook', correct: true, question_id: react_q2.id },
-                { title: 'Google', correct: false, question_id: react_q2.id },
-                { title: 'Netflix', correct: false, question_id: react_q2.id },
-                { title: 'Yandex', correct: false, question_id: react_q2.id },
-                { title: 'yes', correct: false, question_id: vue_q1.id },
-                { title: 'no', correct: true, question_id: vue_q1.id }])
+Answer.create!([{ title: 'yes', correct: true, question: react_q1 },
+                { title: 'no', correct: false, question: react_q1 },
+                { title: 'yes', correct: true, question: rails_q1 },
+                { title: 'no', correct: false, question: rails_q1 },
+                { title: 'Facebook', correct: true, question: react_q2 },
+                { title: 'Google', correct: false, question: react_q2 },
+                { title: 'Netflix', correct: false, question: react_q2 },
+                { title: 'Yandex', correct: false, question: react_q2 },
+                { title: 'yes', correct: false, question: vue_q1 },
+                { title: 'no', correct: true, question: vue_q1 }])
 
-Result.create!([{ user_id: alex_user.id, test_id: react_test.id }, { user_id: alex_user.id, test_id: rails_test.id }])
+Result.create!([{ user: users[0], test: react_test }, { user: users[0], test: rails_test }])
