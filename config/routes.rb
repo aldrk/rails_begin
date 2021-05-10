@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
-  root to: 'questions#index', test_id: 1
+  root to: 'tests#index'
 
   resources :tests do
-    resources :questions
+    resources :questions, shallow: true
   end
 end
