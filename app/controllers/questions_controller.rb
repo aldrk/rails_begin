@@ -26,7 +26,7 @@ class QuestionsController < ApplicationController
   def destroy
     @question.destroy
 
-    redirect_to @test
+    redirect_to Test.find(@question.test_id)
   end
 
   private
@@ -40,7 +40,7 @@ class QuestionsController < ApplicationController
   end
 
   def find_question
-    @question = Question.find(params[:test_id])
+    @question = Question.find(params[:id])
   end
 
   def rescue_with_no_found
