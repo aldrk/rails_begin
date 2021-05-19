@@ -1,0 +1,19 @@
+
+<div class="header_wrapper">
+  <h1>Tests page</h1>
+  <div>
+    <%= link_to 'Create test', new_test_path, { class: "new_test" } %>
+  </div>
+</div>
+
+<table class="table">
+  <tr>
+    <th>Title</th>
+    <th>Level</th>
+    <th>Category</th>
+    <th>QuestionsCount</th>
+    <th colspan="3">Actions</th>
+  </tr>
+
+  <%= render @tests %>
+</table>

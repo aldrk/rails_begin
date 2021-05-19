@@ -1,11 +1,4 @@
-<h1>New test creation</h1>
+<h1>New question creation</h1>
 
-<form action="/tests/<%=@test.id %>/questions" method="post">
-  <input name="authenticity_token" value=<%= form_authenticity_token %> type="hidden" />
-  <input name="question[test_id]" value=<%=@test.id %> type="hidden" />
-
-  <input id="title" type="text" name="question[title]" />
-  <label for="title">Title</label>
-
-  <input type="submit" value="Create">
-</form>
+<%= render 'form' %>
+<%= link_to 'Back', test_questions_path %>
