@@ -4,8 +4,6 @@ class QuestionsController < ApplicationController
 
   rescue_from ActiveRecord::RecordNotFound, with: :rescue_with_no_found
 
-  def index; end
-
   def show; end
 
   def edit; end
@@ -21,10 +19,6 @@ class QuestionsController < ApplicationController
     else
       render :new
     end
-  end
-
-  def test_path(i)
-    # code here
   end
 
   def update
@@ -52,7 +46,6 @@ class QuestionsController < ApplicationController
   end
 
   def find_question
-    puts "pasdasd"
     @question = Question.find(params[:id])
   end
 
