@@ -1,4 +1,3 @@
-
 <div class="questions_wrapper">
   <h1><%= @test.title %> questions page</h1>
   <div>
@@ -7,10 +6,12 @@
 </div>
 
 <table class="table">
-  <tr>
-    <th>Title</th>
-    <th colspan="3">Actions</th>
-  </tr>
+  <tbody>
+    <tr>
+      <th>Title</th>
+      <th colspan="3">Actions</th>
+    </tr>
+  </tbody>
 
-  <%= render partial: 'question_edit',  collection: @test.questions, as: :question %>
+  <%= render @test.questions %>
 </table>
