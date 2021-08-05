@@ -21,7 +21,9 @@
 
   <div class="actions_wrapper">
     <%= link_to 'Edit', edit_test_path(@test), { class: "edit"} %>
+    <%= link_to 'Add Question', new_test_question_path(@test), { class: "edit"} %>
   </div>
+
 </div>
 
 <%= link_to 'Back', tests_path, { class: "back"} %>
