@@ -1,0 +1,29 @@
+<div class="test_card_wrapper">
+  <div>
+    <span class="title">Title:</span>
+    <%= @test.title %>
+  </div>
+
+  <div>
+    <span class="title">Level:</span>
+    <%= @test.level %>
+  </div>
+
+  <div>
+    <span class="title">Category:</span>
+    <%= @test.category.title %>
+  </div>
+
+  <div>
+    <span class="title">Questions:</span>
+    <%= render @test.questions %><br>
+  </div>
+
+  <div class="actions_wrapper">
+    <%= link_to 'Edit', edit_test_path(@test), { class: "edit"} %>
+    <%= link_to 'Add Question', new_test_question_path(@test), { class: "edit"} %>
+  </div>
+
+</div>
+
+<%= link_to 'Back', tests_path, { class: "back"} %>
