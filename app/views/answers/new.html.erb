@@ -1,0 +1,8 @@
+<h1>New answer</h1>
+
+<p style="text-align: center; font-size: 20px; margin-top: 24px;">
+  Title: <%= @question.title %>
+</p>
+
+<%= render 'form' %>
+<%= link_to 'Back', question_path(@question) %>

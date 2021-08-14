@@ -4,6 +4,17 @@
     <%= @question.title %>
   </div>
 
+  <div class="question_answers">
+    <h2>Answers</h2>
+
+    <%= link_to 'New answer', new_question_answer_path(@question), { class: "edit"} %>
+
+    <ol>
+      <%= render @question.answers %>
+    </ol>
+  </div>
+
+
   <div class="edit_button">
     <%= link_to 'Edit', edit_question_path(@question.id), { class: "edit"} %>
   </div>
