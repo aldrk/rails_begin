@@ -1,10 +1,13 @@
-<li>
-  <td><%= answer.title %></td>
+<br />
 
-  <%= link_to 'Show', answer_path(answer), class: "edit" %> |
-  <%= link_to 'Edit', edit_answer_path(answer), { class: "edit"} %> |
-  <%= link_to 'Delete', answer_path(answer),
-              method: :delete,
-              data: {confirm: "Are you sure?"} %>
-
-</li>
+<div>
+  <p>Title: <%= answer.title %></p>
+  <p>Correct: <%= answer.correct %></p>
+  <div>
+    Actions: <%= link_to 'Show', answer_path(answer), class: "edit" %> |
+    <%= link_to 'Edit', edit_answer_path(answer), { class: "edit" } %> |
+    <%= link_to 'Delete', answer_path(answer),
+                method: :delete,
+                data: { confirm: "Are you sure?" } %>
+  </div>
+</div>

@@ -9,9 +9,9 @@
 
     <%= link_to 'New answer', new_question_answer_path(@question), { class: "edit"} %>
 
-    <ol>
+    <div>
       <%= render @question.answers %>
-    </ol>
+    </div>
   </div>
 
 
