@@ -6,12 +6,7 @@ class Answer < ApplicationRecord
 
   scope :correct, -> { where(correct: true) }
 
-  attr_reader :answers
-
   def validate_answers_count
-    puts @question, "QUESTION"
-
-
-    # errors.add(@answer, message: "can't be more the 4") if @question.answers.count >= 4
+    question.errors.add :"can't be more the 4" if question.answers.size >= 4
   end
 end
