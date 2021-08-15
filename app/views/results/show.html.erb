@@ -1,5 +1,7 @@
 <h1>Pass <%= @test_passage.test.title %> test</h1>
-
+<br/>
+<p><%= questions_counter(@test_passage) %></p>
+<br/>
 <div class="test__passage">
   <b>
     <%= @test_passage.current_question.title %>
@@ -13,6 +15,6 @@
       </p>
     <% end %>
 
-    <div class="submit"><%= form.submit 'Next'%></div>
+    <div class="submit"><%= form.submit 'Next' %></div>
   <% end %>
 </div>
