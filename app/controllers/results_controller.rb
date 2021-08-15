@@ -9,7 +9,7 @@ class ResultsController < ApplicationController
     @test_passage.accept!(params[:answer_ids])
 
     if @test_passage.completed?
-      redirect_to results_result_path(@test_passage)
+      redirect_to result_result_path(@test_passage)
     else
       render :show
     end
