@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_03_192250) do
+ActiveRecord::Schema.define(version: 2021_08_14_204701) do
 
   create_table "answers", force: :cascade do |t|
     t.string "title", null: false
@@ -25,6 +25,7 @@ ActiveRecord::Schema.define(version: 2021_05_03_192250) do
     t.string "title", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["title"], name: "index_categories_on_title", unique: true
   end
 
   create_table "questions", force: :cascade do |t|
@@ -40,8 +41,11 @@ ActiveRecord::Schema.define(version: 2021_05_03_192250) do
     t.integer "test_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "current_question_id"
+    t.integer "correct_answers", default: 0
+    t.index ["current_question_id"], name: "index_results_on_current_question_id"
     t.index ["test_id"], name: "index_results_on_test_id"
-    t.index ["user_id", "test_id"], name: "index_results_on_user_id_and_test_id", unique: true
+    t.index ["user_id", "test_id"], name: "index_results_on_user_id_and_test_id"
     t.index ["user_id"], name: "index_results_on_user_id"
   end
 
@@ -54,6 +58,7 @@ ActiveRecord::Schema.define(version: 2021_05_03_192250) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["author_id"], name: "index_tests_on_author_id"
     t.index ["category_id"], name: "index_tests_on_category_id"
+    t.index ["title", "level"], name: "index_tests_on_title_and_level", unique: true
   end
 
   create_table "users", force: :cascade do |t|
@@ -61,6 +66,7 @@ ActiveRecord::Schema.define(version: 2021_05_03_192250) do
     t.string "password", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["login"], name: "index_users_on_login", unique: true
   end
 
   add_foreign_key "answers", "questions"
