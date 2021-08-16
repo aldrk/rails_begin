@@ -1,0 +1,12 @@
+<div class="test_card_wrapper">
+  <div>
+    <span class="title">Title:</span>
+    <%= @answer.title %>
+  </div>
+
+  <div class="edit_button">
+    <%= link_to 'Edit', edit_answer_path(@answer.id), { class: "edit"} %>
+  </div>
+</div>
+
+<%= link_to 'Back', question_path, { class: "back"} %>
