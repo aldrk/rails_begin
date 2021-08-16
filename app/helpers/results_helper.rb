@@ -1,5 +1,9 @@
 module ResultsHelper
   def questions_counter(test_passage)
-    "Question #{test_passage.test.questions.find_index(test_passage.current_question) + 1}/#{test_passage.test.questions.count}"
+    "Question #{current_question_number}/#{test_passage.test.questions.count}"
+  end
+
+  def current_question_number
+    test.questions.order(:id).where('id < ?', current_question.id).size + 1
   end
 end
