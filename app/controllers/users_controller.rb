@@ -18,6 +18,6 @@ class UsersController < ApplicationController
 
   # what we can send to model
   def user_params
-    params.require(:user).permit(:login, :password, :password_confirmation)
+    params.require(:user).permit(:email, :password, :password_confirmation)
   end
 end
