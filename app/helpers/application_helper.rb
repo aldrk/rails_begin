@@ -18,6 +18,6 @@ module ApplicationHelper
   end
 
   def show(flash)
-    content_tag :p, flash[:alert], class: 'flash alert' if flash[:alert]
+    content_tag :p, flash.now[:alert], class: 'flash alert' if flash[:alert]
   end
 end
