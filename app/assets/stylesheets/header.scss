@@ -1,0 +1,38 @@
+.header {
+  width: 100%;
+  height: 75px;
+  margin-bottom: 24px;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  border-bottom: 1px solid #50cd2d;
+  align-items: center;
+}
+
+.logout {
+  a {
+    color: #50cd2d;
+
+    &:hover {
+      color: rgb(236, 43, 43);
+    }
+  }
+}
+
+.logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: 150px;
+  border-right: 1px solid #50cd2d;
+}
+
+.menu {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  text-align: center;
+  width: 500px;
+  border-left: 1px solid #50cd2d;
+}
+

@@ -1,12 +1,16 @@
 # frozen_string_literal: true
 
 class ApplicationController < ActionController::Base
-  # can use in models & controllers
-  helper_method :current_user
+  before_action :authenticate_user!
+
+  protect_from_forgery with: :exception
+
+  helper_method :current_user, :logged_in?
 
   def authenticate_user!
-    puts current_user
-    redirect_to login_path unless current_user
+    redirect_to login_path, alert: 'Verify your email and password' unless current_user
+
+    cookies[:user_path] = request.method_symbol.eql?(:get) ? request.original_url : nil
   end
 
   def current_user
