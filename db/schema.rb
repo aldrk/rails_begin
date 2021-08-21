@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_14_204701) do
+ActiveRecord::Schema.define(version: 2021_08_21_093505) do
 
   create_table "answers", force: :cascade do |t|
     t.string "title", null: false
@@ -42,7 +42,7 @@ ActiveRecord::Schema.define(version: 2021_08_14_204701) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "current_question_id"
-    t.integer "correct_answers", default: 0
+    t.integer "test_correct_answers", default: 0
     t.index ["current_question_id"], name: "index_results_on_current_question_id"
     t.index ["test_id"], name: "index_results_on_test_id"
     t.index ["user_id", "test_id"], name: "index_results_on_user_id_and_test_id"
@@ -63,7 +63,7 @@ ActiveRecord::Schema.define(version: 2021_08_14_204701) do
 
   create_table "users", force: :cascade do |t|
     t.string "login", null: false
-    t.string "password", null: false
+    t.string "password_digest", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["login"], name: "index_users_on_login", unique: true

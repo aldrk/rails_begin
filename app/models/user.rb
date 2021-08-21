@@ -4,7 +4,7 @@ class User < ApplicationRecord
   has_many :created_tests, class_name: 'Test', foreign_key: :author_id, inverse_of: :author, dependent: :destroy
 
   validates :login, presence: true, uniqueness: true
-  validates :password, presence: true
+  validates :password_digest, presence: true
 
   scope :test_by_level, ->(level) { where(level: level) }
 
