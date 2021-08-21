@@ -1,11 +1,11 @@
 require 'digest/sha1'
 
 class User < ApplicationRecord
-  include Auth
-
   has_many :results, inverse_of: :user, dependent: :destroy
   has_many :tests, through: :results
   has_many :created_tests, class_name: 'Test', foreign_key: :author_id, inverse_of: :author, dependent: :destroy
+
+  has_secure_password
 
   scope :test_by_level, ->(level) { where(level: level) }
 
