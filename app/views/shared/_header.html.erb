@@ -5,7 +5,7 @@
   <% if logged_in? then %>
   <span class='logout'>
     <%= link_to 'Log out',
-                sessions_path(session),
+                session_path(session),
                 method: :delete,
                 data: { confirm: 'You want to exit?' } %>
   </span>
