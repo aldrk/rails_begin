@@ -1,5 +1,5 @@
 class TestsController < ApplicationController
-  before_action :authenticate_user!, only: :index
+  before_action :authenticate_user!, only: %i[index create]
 
   before_action :find_test, only: %i[show destroy update edit show start]
 
@@ -16,8 +16,8 @@ class TestsController < ApplicationController
   def edit; end
 
   def create
-    @test = Test.new(test_params)
-    @test.author = current_user
+    current_user._own_tests_.build(test_params)
+
     if @test.save
       redirect_to tests_path
     else
