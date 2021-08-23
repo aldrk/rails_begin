@@ -16,12 +16,12 @@
 
   <div>
     <div class="logo">Questions:</div>
-    <%= render partial: 'questions/question', collection: @test.questions %><br>
+    <%= render @test.questions %>
   </div>
 
   <div class="actions_wrapper">
     <%= link_to 'Edit', edit_admin_test_path(@test), { class: "edit"} %>
-    <%= link_to 'Add Question', new_test_question_path(@test), { class: "edit"} %>
+    <%= link_to 'Add Question', new_admin_test_question_path(@test), { class: "edit"} %>
   </div>
 
 </div>

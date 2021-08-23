@@ -5,8 +5,8 @@
   </div>
 
   <div class="edit_button">
-    <%= link_to 'Edit', edit_answer_path(@answer.id), { class: "edit"} %>
+    <%= link_to 'Edit', edit_admin_answer_path(@answer.id), { class: "edit"} %>
   </div>
 </div>
 
-<%= link_to 'Back', question_path, { class: "back"} %>
+<%= link_to 'Back', admin_question_path, { class: "back"} %>

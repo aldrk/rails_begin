@@ -7,7 +7,7 @@
   <div class="question_answers">
     <h2>Answers</h2>
 
-    <%= link_to 'New answer', new_question_answer_path(@question), { class: "edit"} %>
+    <%= link_to 'New answer', new_admin_question_answer_path(@question), { class: "edit"} %>
 
     <div>
       <%= render @question.answers %>
@@ -16,7 +16,7 @@
 
 
   <div class="edit_button">
-    <%= link_to 'Edit', edit_question_path(@question.id), { class: "edit"} %>
+    <%= link_to 'Edit', edit_admin_question_path(@question.id), { class: "edit"} %>
   </div>
 </div>
 
