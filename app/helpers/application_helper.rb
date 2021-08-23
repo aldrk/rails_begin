@@ -13,7 +13,7 @@ module ApplicationHelper
     if current_user
       render partial: 'shared/user', locals: { user: current_user, session: session }
     else
-      link_to 'Log in', login_path
+      link_to 'Log in', user_session_path
     end
   end
 
