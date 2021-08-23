@@ -13,7 +13,7 @@ class Result < ApplicationRecord
   end
 
   def accept!(answer_ids)
-    self.correct_answers += 1 if correct_answer?(answer_ids)
+    self.test_correct_answers += 1 if correct_answer?(answer_ids)
 
     save!
   end
@@ -23,7 +23,7 @@ class Result < ApplicationRecord
   end
 
   def correct_answers_percent
-    correct_answers.to_f / test.questions.count * 100
+    test_correct_answers.to_f / test.questions.count * 100
   end
 
   private
@@ -33,10 +33,10 @@ class Result < ApplicationRecord
   end
 
   def correct_answer?(answers_ids)
-    correct_answers.ids.sort == answers_ids.map(&:to_i).sort
+    test_correct_answers_check.ids.sort == answers_ids.map(&:to_i).sort
   end
 
-  def test_correct_answers
+  def test_correct_answers_check
     current_question.answers.correct
   end
 
