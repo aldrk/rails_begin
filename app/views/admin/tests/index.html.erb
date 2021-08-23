@@ -1,4 +1,10 @@
 
+<div class="header_wrapper">
+  <h1>Tests page</h1>
+  <div>
+    <%= link_to 'Create test', new_admin_test_path, { class: "new_test" } %>
+  </div>
+</div>
 
 <table class="table">
   <thead>
@@ -7,7 +13,7 @@
       <th>Level</th>
       <th>Category</th>
       <th>QuestionsCount</th>
-      <th>Actions</th>
+      <th colspan="4">Actions</th>
     </tr>
   </thead>
 

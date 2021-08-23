@@ -1,0 +1,10 @@
+<header class='header'>
+  <p class='logo'><%= link_to 'Tests', admin_tests_path %></p>
+  <p class='menu'><%= header_menu(current_user) %>  </p>
+
+  <% if user_signed_in? then %>
+  <span class='logout'>
+    <%= link_to 'Log out', destroy_user_session_path, method: :delete%>
+  </span>
+  <% end %>
+</header>
