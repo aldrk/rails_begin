@@ -4,6 +4,6 @@ class SessionsController < Devise::SessionsController
   private
 
   def after_login
-    flash[:notice] = current_user.sign_in_count.eql?(1) ? "Hello, #{current_user.first_name} #{current_user.last_name}!" : t(:signed_in)
+    flash[:notice] = current_user.sign_in_count.eql?(1) ? "Hello, #{user_name!}" : t(:signed_in)
   end
 end

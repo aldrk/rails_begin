@@ -8,7 +8,6 @@ class Admin::BaseController < ApplicationController
   private
 
   def admin_required!
-    puts current_user.type, "DBJUKABDHIIHSADHIJASDHIASIDH"
     redirect_to root_path, alert: 'You can`t see this pages' unless current_user.is_a?(Admin)
   end
 end
