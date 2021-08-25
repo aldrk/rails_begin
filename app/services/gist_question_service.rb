@@ -1,4 +1,6 @@
 class GistQuestionService
+  ResponseObject = Struct.new(:success?, :html_url)
+
   def initialize(question)
     @question = question
     @test = question.test
@@ -28,6 +30,6 @@ class GistQuestionService
   end
 
   def gist_content
-    [@question.body, *@question.answers.pluck(:body)].join("\n")
+    [@question.title, *@question.answers.pluck(:title)].join("\n")
   end
 end

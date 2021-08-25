@@ -32,8 +32,10 @@
 en:
   hello: "Hello world"
 
-gist:
-  success: "Successfully created gist."
-  failure: "Something went wrong. Try again later."
-  description: "A %{question} question from %{title} by TestGuru"
-  file_name: "test-guru-question.txt"
+ru:
+  results:
+    gist:
+      success: "Successfully created gist."
+      failure: "Something went wrong. Try again later."
+      description: "A %{question} question from %{test} by TestGuru"
+      file_name: "test-guru-question.txt"
