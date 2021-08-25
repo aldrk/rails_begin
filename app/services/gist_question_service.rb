@@ -1,21 +1,26 @@
 class GistQuestionService
-  def initialize(question, client: nil)
+  def initialize(question)
     @question = question
     @test = question.test
-    @client = client || Octokit::Client.new(access_token: Rails.application.credentials.github[:access_token])
+    @client = http_client
   end
 
   def call
-    @client.create_gist(gist_params)
+    response = @client.create_gist(gist_params)
+    ResponseObject.new(response.html_url.present?, response.html_url)
+  end
+
+  def http_client
+    Octokit::Client.new(access_token: Rails.application.credentials.github[:access_token])
   end
 
   private
 
   def gist_params
     {
-      description: "A #{@question.title} question from #{@test.title} by TestGuru",
+      description: I18n.t('gist.description', test: @test.title, question: @question.title),
       files: {
-        'test-guru-question.txt' => {
+        I18n.t('gist.file_name') => {
           content: gist_content
         }
       }
@@ -23,8 +28,6 @@ class GistQuestionService
   end
 
   def gist_content
-    content = [@question.title]
-    content += @question.answers.pluck(:title)
-    content.join("\n")
+    [@question.body, *@question.answers.pluck(:body)].join("\n")
   end
 end
