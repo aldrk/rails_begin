@@ -1,0 +1,27 @@
+.pointer {
+  cursor: pointer;
+}
+
+.hide {
+  display: none !important;
+}
+
+.circle-row {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  top: 27px;
+  left: -30px;
+}
+
+.correct {
+  color: green;
+}
+
+.no-correct {
+  color: red;
+}
+
+.field {
+  position: relative;
+}
