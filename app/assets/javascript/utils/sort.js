@@ -1,3 +1,9 @@
+function sortRows() {
+    const control = document.querySelector(".sort-by-title")
+
+    control?.addEventListener("click", sortRowsByTitle)
+}
+
 function sortRowsByTitle()  {
     const table = document.querySelector('table')
     const rows = table.querySelectorAll("tr")
@@ -42,7 +48,6 @@ const compareRowsAsc = (row1, row2) => {
 const compareRowsDesc = (row1, row2) => {
     const rowTestTitle1 = row1.querySelector("td").textContent
     const rowTestTitle2 = row2.querySelector("td").textContent
-    console.log(rowTestTitle1)
 
     if (rowTestTitle1 < rowTestTitle2) return 1
     if (rowTestTitle1 > rowTestTitle2) return -1

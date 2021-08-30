@@ -26,6 +26,10 @@ class Result < ApplicationRecord
     test_correct_answers.to_f / test.questions.count * 100
   end
 
+  def current_question_number
+    test.questions.order(:id).where('id < ?', current_question.id).size + 1
+  end
+
   private
 
   def before_validation_set_first_question

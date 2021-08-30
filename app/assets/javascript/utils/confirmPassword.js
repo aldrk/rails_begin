@@ -3,11 +3,10 @@ function toggleConfirmation (passEl, confirmationEl) {
     const passwordConfirmation = document.querySelector(confirmationEl)
     const correct = document.querySelector(".octicon-check-circle");
     const inCorrect = document.querySelector(".octicon-x-circle");
-    console.log(passwordConfirmation, password)
+
+    if (!password || !passwordConfirmation) return
 
     const listener = (e) => {
-        console.log(e.target.value)
-
         if (e.target.value.length) {
             if (e.target.value !== password.value) {
                 inCorrect.classList.remove("hide");

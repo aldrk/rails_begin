@@ -39,3 +39,7 @@ ru:
       failure: "Something went wrong. Try again later."
       description: "A %{question} question from %{test} by TestGuru"
       file_name: "test-guru-question.txt"
+  admin:
+    tests:
+      form_inline:
+        submit: "OK"

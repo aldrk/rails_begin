@@ -14,7 +14,7 @@ class Admin::AnswersController < Admin::BaseController
     answer = @question.answers.new(answer_params)
 
     if answer.save
-      redirect_to admin_question_path(@answer.question), notice: 'Answer was created.'
+      redirect_to admin_question_path(answer.question), notice: 'Answer was created.'
     else
       render :new
     end
