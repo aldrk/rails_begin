@@ -9,6 +9,12 @@
 <% end %>
 </p>
 
+<p>
+  <%= content_tag :div, '', class: 'timer' , data: { left_time: @test_passage.left_time } do %>
+    <%= octicon 'clock' %>
+  <% end %>
+</p>
+
 <div class="test__passage">
   <b>
     <%= @test_passage.current_question.title %>
@@ -23,6 +29,6 @@
     <% end %>
 
     <div class="submit"><%= link_to 'Gist', gist_result_path(@test_passage), method: :post %> </div>
-    <div class="submit"><%= form.submit 'Next' %></div>
+    <div class="submit"><%= form.submit 'Next', id: 'next-button' %></div>
   <% end %>
 </div>
