@@ -10,14 +10,25 @@ class Result < ApplicationRecord
   SUCCESS_COMPLETE = 85
 
   def completed?
-    current_question.nil?
+    current_question.nil? || time_end?
   end
 
   def accept!(answer_ids)
+    return if time_end?
+
     self.test_correct_answers += 1 if correct_answer?(answer_ids)
 
     self.current_question = next_question
     save!
+  end
+
+  def time_end?
+    times_end <= Time.current
+  end
+
+  def left_time
+    time = times_end - Time.current
+    time.positive? ? time : 0
   end
 
   def success_result?
@@ -53,5 +64,9 @@ class Result < ApplicationRecord
   def next_question
     puts current_question.title
     test.questions.order(:id).find_by('id > ?', current_question.id)
+  end
+
+  def times_end
+    created_at + test.time_to_pass.minutes
   end
 end

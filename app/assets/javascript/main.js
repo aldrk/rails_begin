@@ -7,4 +7,6 @@ document.addEventListener("turbolinks:load", () => {
     formInline()
 
     progressBar()
+
+    timer()
 })
