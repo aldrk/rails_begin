@@ -43,3 +43,5 @@ ru:
     tests:
       form_inline:
         submit: "OK"
+  badges:
+    get_badge: "You just get an achievement. Continue and get more!"

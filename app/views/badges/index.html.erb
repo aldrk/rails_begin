@@ -1,0 +1,15 @@
+<h1>Badges list</h1>
+<br/>
+
+<div>
+  <%= link_to 'Your achievements', own_badges_path %>
+</div>
+
+<br/>
+
+<table class="table">
+  <th>Title</th>
+  <th>Description</th>
+
+  <%= render @badges %>
+</table>

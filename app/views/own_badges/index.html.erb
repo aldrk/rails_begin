@@ -1,0 +1,17 @@
+<% if @own_badges.present? %>
+
+  <h1>Your achievements!</h1>
+
+  <br/>
+
+  <table class="table">
+    <th>Title</th>
+    <th>Description</th>
+    <%= render @own_badges %>
+  </table>
+
+<% else %>
+  <p>You don`t get ant achievements yet :(</p>
+  <%= link_to 'Choose test to pass', tests_path %>
+<% end %>
+<%= link_to 'Back', badges_path %>

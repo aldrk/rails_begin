@@ -1,0 +1,14 @@
+<tr>
+  <td>
+    <%= link_to badge.title, admin_badge_path(badge) %>
+  </td>
+  <td><%= badge.description %></td>
+  <td>
+    <%= link_to 'Edit', edit_admin_badge_path(badge) %></td>
+  <td>
+    <%= link_to 'Delete',
+                admin_badge_path(badge),
+                method: :delete,
+                data: { confirm: 'Are you sure to delete achievement?' } %>
+  </td>
+</tr>

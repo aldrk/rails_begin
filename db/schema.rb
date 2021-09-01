@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_25_050018) do
+ActiveRecord::Schema.define(version: 2021_09_01_051958) do
 
   create_table "answers", force: :cascade do |t|
     t.string "title", null: false
@@ -19,6 +19,16 @@ ActiveRecord::Schema.define(version: 2021_08_25_050018) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["question_id"], name: "index_answers_on_question_id"
+  end
+
+  create_table "badges", force: :cascade do |t|
+    t.string "title", null: false
+    t.string "description", null: false
+    t.string "file_name", default: "/app/assets/images/achievement.png", null: false
+    t.string "condition", null: false
+    t.string "condition_value", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "categories", force: :cascade do |t|
@@ -38,6 +48,16 @@ ActiveRecord::Schema.define(version: 2021_08_25_050018) do
     t.index ["user_id"], name: "index_gists_on_user_id"
   end
 
+  create_table "own_badges", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "badge_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["badge_id"], name: "index_own_badges_on_badge_id"
+    t.index ["user_id", "badge_id"], name: "index_own_badges_on_user_id_and_badge_id"
+    t.index ["user_id"], name: "index_own_badges_on_user_id"
+  end
+
   create_table "questions", force: :cascade do |t|
     t.string "title", null: false
     t.integer "test_id", null: false
@@ -53,6 +73,7 @@ ActiveRecord::Schema.define(version: 2021_08_25_050018) do
     t.datetime "updated_at", precision: 6, null: false
     t.integer "current_question_id"
     t.integer "test_correct_answers", default: 0
+    t.integer "result_percent", default: 0
     t.index ["current_question_id"], name: "index_results_on_current_question_id"
     t.index ["test_id"], name: "index_results_on_test_id"
     t.index ["user_id", "test_id"], name: "index_results_on_user_id_and_test_id"
@@ -100,6 +121,8 @@ ActiveRecord::Schema.define(version: 2021_08_25_050018) do
   add_foreign_key "answers", "questions"
   add_foreign_key "gists", "questions"
   add_foreign_key "gists", "users"
+  add_foreign_key "own_badges", "badges"
+  add_foreign_key "own_badges", "users"
   add_foreign_key "questions", "tests"
   add_foreign_key "results", "tests"
   add_foreign_key "results", "users"

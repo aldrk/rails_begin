@@ -3,8 +3,9 @@ class Result < ApplicationRecord
   belongs_to :test, inverse_of: :results
   belongs_to :current_question, class_name: 'Question', optional: true
 
-  before_validation :before_validation_set_first_question, on: :create
-  before_update :next_question
+  before_validation :set_first_question, on: :create
+
+  scope :success_results, -> { where('result_percent >= ?', SUCCESS_TRESHOLD) }
 
   SUCCESS_COMPLETE = 85
 
@@ -15,6 +16,7 @@ class Result < ApplicationRecord
   def accept!(answer_ids)
     self.test_correct_answers += 1 if correct_answer?(answer_ids)
 
+    self.current_question = next_question
     save!
   end
 
@@ -30,9 +32,13 @@ class Result < ApplicationRecord
     test.questions.order(:id).where('id < ?', current_question.id).size + 1
   end
 
+  def set_result_percent
+    update!(result_percent: correct_answers_percent)
+  end
+
   private
 
-  def before_validation_set_first_question
+  def set_first_question
     self.current_question = test.questions.first if test.present?
   end
 
@@ -45,6 +51,7 @@ class Result < ApplicationRecord
   end
 
   def next_question
-    self.current_question = test.questions.order(:id).find_by('id > ?', current_question.id)
+    puts current_question.title
+    test.questions.order(:id).find_by('id > ?', current_question.id)
   end
 end
